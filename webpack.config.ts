@@ -1,13 +1,18 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import path from 'path';
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-const webpack = require('webpack');
-const path = require('path');
+type Mode = 'development' | 'production';
 
+interface EnvVariables {
+    mode: Mode;
+}
 
-module.exports = (env) => {
-    return {
+export default (env: EnvVariables) => {
+
+    const config: webpack.Configuration = {
         mode: env.mode ?? 'development',
-        entry:  path.resolve(__dirname, 'src', 'index.ts'),
+        entry: path.resolve(__dirname, 'src', 'index.ts'),
         module: {
             rules: [
                 {
@@ -21,7 +26,7 @@ module.exports = (env) => {
             extensions: ['.tsx', '.ts', '.js'],
         },
         output: {
-        path: path.resolve(__dirname, 'build'),
+            path: path.resolve(__dirname, 'build'),
             filename: '[name].[contenthash].js',
             clean: true
         },
@@ -30,4 +35,6 @@ module.exports = (env) => {
             new webpack.ProgressPlugin()
         ],
     }
+
+    return config
 }
