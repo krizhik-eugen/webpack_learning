@@ -6,11 +6,18 @@ export function buildLoaders({mode}: BuildOptions): ModuleOptions['rules'] {
     const isDev = mode === 'development';
 
     const scssLoader = {
-        test: /\.s[ac]ss$/i,
+        test: /\.(sa|sc|c)ss$/i,
         use: [
             isDev ? "style-loader" : MiniCssExtractPlugin.loader,
             // Translates CSS into CommonJS
-            "css-loader",
+            {
+                loader: "css-loader",
+                options: {
+                    modules: {
+                        localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64:8]',
+                    }
+                }
+            },
             // Compiles Sass to CSS
             "sass-loader",
         ],

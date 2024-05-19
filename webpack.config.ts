@@ -5,7 +5,8 @@ import {BuildMode, BuildPaths} from './config/build/types/types';
 
 interface EnvVariables {
     mode: BuildMode;
-    port: number
+    port: number;
+    analyzer?: boolean;
 }
 
 export default (env: EnvVariables) => {
@@ -13,12 +14,14 @@ export default (env: EnvVariables) => {
         entry: path.resolve(__dirname, 'src', 'index.tsx'),
         html: path.resolve(__dirname, 'public', 'index.html'),
         output: path.resolve(__dirname, 'build'),
+        src: path.resolve(__dirname, 'src'),
     }
 
     const config: webpack.Configuration = buildWebpack({
         mode: env.mode ?? 'development',
         port: env.port ?? 3000,
-        paths
+        paths,
+        analyzer: env.analyzer,
     })
     return config
 }

@@ -14,6 +14,10 @@
     "esModuleInterop": true,
 // esModuleInterop позволяет работать с пакетами, которые используют commonJS как с обычными пакетами с помощью import (require() module.export) = commonJS
 // import Moment from 'moment' - без esModuleInterop console.log(Moment) будет undefined, с флагом - [object, Object]
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "ts-node": {
     "compilerOptions": {
