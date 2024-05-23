@@ -13,6 +13,9 @@ export const App = () => {
         <div>
             Hello world!!!
 
+
+            <div>Platform = {__PLATFORM__}</div>
+
             <div>
                 <img src={png_example} height={150}/>
             </div>
