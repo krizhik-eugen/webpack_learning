@@ -2,13 +2,17 @@ import {useState} from 'react';
 import * as styles from './App.module.scss'
 import {Link, Outlet} from 'react-router-dom';
 import About from '@/pages/about/About';
-import png_example from '@/assets/penguin.png'
-import jpg_example from '@/assets/workplace.jpg'
-import SVGExample from '@/assets/color-samples.svg'
+import png_example from '@/assets/penguin.png';
+import jpg_example from '@/assets/workplace.jpg';
+import SVGExample from '@/assets/color-samples.svg';
+
+const todo = (a: number) => {
+    console.log('a', a)
+}
 
 export const App = () => {
     const [count, setCount] = useState(0);
-
+    todo(2)
     return (
         <div>
             Hello world!!!
