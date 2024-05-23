@@ -34,7 +34,7 @@ export const App = () => {
             <br/>
             <Link to={'/shop'}>shop</Link>
 
-            <h3 className={styles.value}>{count}</h3>
+            <h3 className={styles.value} style={{color: 'green'}}>{count}</h3>
 
             <button
                 className={styles.btn}
