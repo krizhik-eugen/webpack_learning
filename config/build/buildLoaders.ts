@@ -1,10 +1,12 @@
-import {ModuleOptions} from "webpack";
+import { ModuleOptions } from "webpack";
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import {BuildOptions} from './types/types';
+import { BuildOptions } from './types/types';
 import ReactRefreshTypeScript from 'react-refresh-typescript';
+import { buildBabelLoader } from "./babel/buildBabelLoader";
 
 
-export function buildLoaders({mode}: BuildOptions): ModuleOptions['rules'] {
+export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
+    const { mode } = options
     const isDev = mode === 'development';
 
     const assetLoader = {
@@ -66,10 +68,13 @@ export function buildLoaders({mode}: BuildOptions): ModuleOptions['rules'] {
         }
     }
 
+    const babelLoader = buildBabelLoader(options)
+
     return [
         assetLoader,
         scssLoader,
-        tsLoader,
+        // tsLoader,
+        babelLoader,
         svgLoader,
     ]
 }
